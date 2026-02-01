@@ -1,11 +1,8 @@
 from models.doctors import Doctor
-from utils.load_data import load_doctors
+
 
 class HealthSystem:
-    def __init__(self):
-        self.doctors = load_doctors()
-
-
+    
     def find_doctor(self, category, location):
         result = []
         for doctor in self.doctors:
