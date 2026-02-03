@@ -1,0 +1,11 @@
+[
+  { "id": 1, "name": "Medicine" },
+  { "id": 2, "name": "Dermatology" },
+  { "id": 3, "name": "Cardiology" },
+  { "id": 4, "name": "Neurology" },
+  { "id": 5, "name": "ENT" },
+  { "id": 6, "name": "Orthopedic" },
+  { "id": 7, "name": "Gastroenterology" },
+  { "id": 8, "name": "Ophthalmology" },
+  { "id": 9, "name": "Urology" }
+]

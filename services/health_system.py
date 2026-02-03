@@ -1,12 +1,12 @@
-from models.doctors import Doctor
-
-
 class HealthSystem:
+    def __init__(self, data):
+        self.data = data
+        self.doctors = data.load("doctors.json")
     
-    def find_doctor(self, category, location):
+    def find_doctor(self, category_id):
         result = []
         for doctor in self.doctors:
-            if doctor["category"].lower() == category.lower() and doctor["location"].lower() == location.lower():
+            if doctor["category_id"] == category_id:
                 result.append(doctor)
 
         if len(result) > 0:

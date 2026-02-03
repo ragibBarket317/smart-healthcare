@@ -1,36 +1,42 @@
 from services.health_system import HealthSystem
 from utils.load_data import DataLoader
 from services.admin_service import AdminService
+from services.symptom_service import SymptomEngine
 
 data = DataLoader()
 admin = AdminService(data)
-system = HealthSystem()
+system = HealthSystem(data)
+symptom_eng = SymptomEngine(data)
 
 def main():
     while True:
         print("_____Smart HealthCare_____")
         print("1. Find Doctor")
-        print("2. Search Doctor")
+        print("2. Find Doctor by symptoms: ")
         print("3. Admin Panel")
         print("4. Exit")
 
         choice = input("Choose option: ")
 
         if choice == "1":
-            cat = input("Category: ")
-            loc = input("Location: ")
+            cat = int(input("Category_id: "))
 
-            doctors = system.find_doctor(cat, loc)
+            doctors = system.find_doctor(cat)
             print(f"Result: {doctors}")
 
         elif choice == "2":
-            name = input("Doctor name: ")
-            cat = input("Category: ")
-            loc = input("Location: ")
-            rat = input("Rating: ")
+            sym = input("Enter your symptom: ")
 
-            doctors = system.search_doctor(name, cat, loc, rat)
-            print(f"Result: {doctors}")
+            symptom = sym.split(",")
+
+            category = symptom_eng.recomendation(symptom)
+            # print(f"category: {category}")
+            for cat_id, weight in category:
+                cat = symptom_eng.get_category(cat_id)
+                doctors = system.find_doctor(cat_id)
+                for doc in doctors:
+                    print(f"Doctor Name: {doc["name"]} Category: {cat["name"]}, Weigth: {weight}")
+                
 
         elif choice == "3":
             while True:

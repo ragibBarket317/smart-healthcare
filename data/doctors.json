@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Rahim Uddin",
+    "category_id": 1,
+    "experience": 10,
+    "rating": 4.7
+  },
+  {
+    "id": 2,
+    "name": "Ragib Barket",
+    "category_id": 1,
+    "experience": 10,
+    "rating": 4.5
+  }
+]

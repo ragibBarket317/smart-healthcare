@@ -10,6 +10,6 @@ class DataLoader:
             return json.load(file)
         
     def save(self, filename, data):
-        with open(os.path.json(self.base_path, filename), 'w') as file:
+        with open(os.path.join(self.base_path, filename), 'w') as file:
             json.dump(data, file, indent=2)  
             

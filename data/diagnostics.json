@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "LabAid",
+    "location": "Dhanmondi, Dhaka",
+    "Rating": 4.56
+  },
+  {
+    "id": 2,
+    "name": "Popular",
+    "location": "Mirpur, Dhaka",
+    "rating": 4.2
+  }
+]
