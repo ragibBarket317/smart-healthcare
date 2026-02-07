@@ -1,18 +1,26 @@
 class HealthSystem:
     def __init__(self, data):
         self.data = data
-        self.doctors = data.load("doctors.json")
+        # self.doctors = data.load("doctors.json")
     
     def find_doctor(self, category_id):
-        result = []
-        for doctor in self.doctors:
-            if doctor["category_id"] == category_id:
-                result.append(doctor)
+        # result = []
+        # for doctor in self.doctors:
+        #     if doctor["category_id"] == category_id:
+        #         result.append(doctor)
 
-        if len(result) > 0:
-            return result
+        # if len(result) > 0:
+        #     return result
 
-        return "Not found any doctor"    
+        # return "Not found any doctor" 
+
+        query = "SELECT * FROM doctors WHERE category_id = ?"
+        doctors = self.data.fetch_one(query, (category_id,))
+
+        if doctors:
+            return doctors
+        return "Not found any doctor"
+         
 
     def search_doctor(self, name=None, category=None, location=None, rating=None):
         result = []
@@ -32,4 +40,5 @@ class HealthSystem:
         if len(result) > 0:
             return result
 
-        return "Not found any doctor"     
+        return "Not found any doctor" 
+        

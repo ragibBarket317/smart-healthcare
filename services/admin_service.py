@@ -3,25 +3,39 @@ class AdminService:
         self.data = data
 
     def add_doctor(self):
-        doctors = self.data.load("doctors.json")
+        # doctors = self.data.load("doctors.json")
         
+        # name = input("Enter doctor name: ")
+        # cat_id = int(input("Category Id: "))
+        # exp = int(input("Experience: "))
+        # rating = float(input("Rating: "))
+
+        # new_id = max([d["id"] for d in doctors], default=0) + 1
+
+        # doctors.append({
+        #     "id": new_id,
+        #     "name": name,
+        #     "category_id": cat_id,
+        #     "experience": exp,
+        #     "rating": rating
+        # })
+
+        # self.data.save("doctors.json", doctors)
+        # print("Doctor added")
+
         name = input("Enter doctor name: ")
         cat_id = int(input("Category Id: "))
         exp = int(input("Experience: "))
-        rating = float(input("Rating: "))
+        rat = float(input("Rating: "))
 
-        new_id = max([d["id"] for d in doctors], default=0) + 1
+        query = """
+        INSERT INTO doctors(name, category_id, experience, rating)
+        VALUES(?, ?, ?, ?)
+        """
 
-        doctors.append({
-            "id": new_id,
-            "name": name,
-            "category_id": cat_id,
-            "experience": exp,
-            "rating": rating
-        })
-
-        self.data.save("doctors.json", doctors)
+        self.data.execute(query, (name, cat_id, exp, rat))
         print("Doctor added")
+        
 
 
 
@@ -45,7 +59,16 @@ class AdminService:
         print("Diagnostics added")
 
     def add_category(self):
-        pass
+        name = input("Enter category name: ")
+
+        query = """
+        INSERT INTO categories(name)
+        VALUES(?)
+        """
+
+        self.data.execute(query, (name,))
+        print("Category added")
+
 
     def  add_symptom(self):
         pass

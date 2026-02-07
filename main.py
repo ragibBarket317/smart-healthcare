@@ -2,10 +2,16 @@ from services.health_system import HealthSystem
 from utils.load_data import DataLoader
 from services.admin_service import AdminService
 from services.symptom_service import SymptomEngine
+from utils.load_data_with_db import DataLoadWithDB
+from database.init_db import init_db
 
 data = DataLoader()
-admin = AdminService(data)
-system = HealthSystem(data)
+data_db = DataLoadWithDB()
+init_db(data_db)
+
+
+admin = AdminService(data_db)
+system = HealthSystem(data_db)
 symptom_eng = SymptomEngine(data)
 
 def main():
