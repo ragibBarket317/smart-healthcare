@@ -1,19 +1,14 @@
 class HealthSystem:
     def __init__(self, data):
         self.data = data
-        # self.doctors = data.load("doctors.json")
     
+    def all_doctors(self):
+        query = "SELECT * FROM doctors"
+        doctors = self.data.fetch_all(query)
+        if doctors:
+            return doctors
+        return "Empty doctor list"
     def find_doctor(self, category_id):
-        # result = []
-        # for doctor in self.doctors:
-        #     if doctor["category_id"] == category_id:
-        #         result.append(doctor)
-
-        # if len(result) > 0:
-        #     return result
-
-        # return "Not found any doctor" 
-
         query = "SELECT * FROM doctors WHERE category_id = ?"
         doctors = self.data.fetch_one(query, (category_id,))
 

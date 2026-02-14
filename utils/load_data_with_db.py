@@ -4,7 +4,7 @@ import os
 class DataLoadWithDB:
     def __init__(self, data_path="database/smart_health.db"):
         self.data_path = data_path
-        self.conn = sqlite3.connect(self.data_path)
+        self.conn = sqlite3.connect(self.data_path, check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
 

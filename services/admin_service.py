@@ -71,7 +71,26 @@ class AdminService:
 
 
     def  add_symptom(self):
-        pass
+       name = input("Symptom name: ")
+       weight = int(input("Weight: "))
+
+       query = """
+        INSERT INTO symptoms(name, weight)
+        VALUES(?, ?)
+        """
+       
+       self.data.execute(query, (name, weight))
+       print("Symptom added")
 
     def add_mapping(self):
-        pass 
+        sym_id = int(input("Symptom id: "))
+        cat_id = int(input("Category id: "))
+        
+
+        query = """
+            INSERT INTO mapping(symptom_id, category_id)
+            VALUES(?, ?)
+            """
+        
+        self.data.execute(query, (sym_id, cat_id))
+        print("Mapping complete")

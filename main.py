@@ -12,7 +12,7 @@ init_db(data_db)
 
 admin = AdminService(data_db)
 system = HealthSystem(data_db)
-symptom_eng = SymptomEngine(data)
+symptom_eng = SymptomEngine(data_db)
 
 def main():
     while True:
@@ -39,10 +39,11 @@ def main():
             # print(f"category: {category}")
             for cat_id, weight in category:
                 cat = symptom_eng.get_category(cat_id)
-                doctors = system.find_doctor(cat_id)
-                for doc in doctors:
+                doc = system.find_doctor(cat_id)
+                if doc:
                     print(f"Doctor Name: {doc["name"]} Category: {cat["name"]}, Weigth: {weight}")
-                
+                else:
+                    print("Doctor is not found")
 
         elif choice == "3":
             while True:
@@ -73,8 +74,8 @@ def main():
         else:
             break
 
-
-main()                    
+if __name__ == '__main__':
+    main()                    
              
       
 
